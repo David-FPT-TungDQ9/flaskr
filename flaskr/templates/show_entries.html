@@ -14,14 +14,6 @@
   <ul class=entries>
   {% for entry in entries %}
     <li><h2>{{ entry.title }}</h2>{{ entry.text|safe }}
-    {% if session.logged_in %}
-      <div class=entry-actions>
-        <a href="{{ url_for('edit_entry', entry_id=entry.id) }}">edit</a>
-        <form action="{{ url_for('delete_entry', entry_id=entry.id) }}" method=post class=delete-entry>
-          <input type=submit value=delete>
-        </form>
-      </div>
-    {% endif %}
   {% else %}
     <li><em>Unbelievable.  No entries here so far</em>
   {% endfor %}
