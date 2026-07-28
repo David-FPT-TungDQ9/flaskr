@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block body %}
+  <dl>
+    <dt>Total entries:
+    <dd>{{ summary.total_entries }}
+    <dt>Latest title:
+    <dd>{{ summary.latest_title or 'n/a' }}
+    <dt>Average text length:
+    <dd>{{ '%.1f'|format(summary.average_text_length) }}
+  </dl>
+{% endblock %}

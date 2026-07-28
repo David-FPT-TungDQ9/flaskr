@@ -3,6 +3,8 @@ import sqlite3
 from flask import Flask, request, session, g, redirect, url_for, abort, \
     render_template, flash
 
+from stats import entry_summary
+
 app = Flask(__name__)  # create the application instance :)
 app.config.from_object(__name__)  # load config from this file , flaskr.py
 
@@ -96,3 +98,10 @@ def logout():
     session.pop('logged_in', None)
     flash('You were logged out')
     return redirect(url_for('show_entries'))
+
+
+@app.route('/stats')
+def stats():
+    db = get_db()
+    summary = entry_summary(db)
+    return render_template('stats.html', summary=summary)
